@@ -44,8 +44,11 @@ class Tree:
         if root.value == value:
             return True
 
-        return self.exists(value,root=root.left) or self.exists(value,root=root.right)
-        
+        if value > root.value:
+            return self.exists(value,root=root.right)
+        else:
+            return self.exists(value,root=root.left)
+
     def sum(self,**kwargs):
 
         root = kwargs.get('root',self.root)
