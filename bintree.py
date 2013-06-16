@@ -36,7 +36,16 @@ class Tree:
         
         return root
 
+    def exists(self, value, **kwargs):
+        root = kwargs.get('root',self.root)
+        if not root:
+            return False
+        
+        if root.value == value:
+            return True
 
+        return self.exists(value,root=root.left) or self.exists(value,root=root.right)
+        
     def sum(self,**kwargs):
 
         root = kwargs.get('root',self.root)
@@ -71,7 +80,10 @@ if __name__ == "__main__":
     x.add(1)
 
 
-
+    print "Transverse tree in order"
     x.inorder()
 
-    print "sum of tree is %d: "% x.sum()
+    print "\nsum of tree is %d: \n"% x.sum()
+
+    for i in range(0,11):
+        print i,": ", x.exists(i)
