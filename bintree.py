@@ -4,6 +4,10 @@ DEBUG = True
 def printer(msg):
     print msg
 
+def inc(node):
+    node.value+=1
+    print node
+
 class Node():
     def __init__(self,value):
         self.value = value
@@ -72,9 +76,9 @@ class Tree:
             func(root)
             return
        
-        self.inorder(root=root.left)
+        self.inorder(root=root.left,func=func)
         func(root)
-        self.inorder(root=root.right)
+        self.inorder(root=root.right,func=func)
 
 #transverses the tree postorder. Root optional argument used for recursion. 
 #func optional argument used to tell which functionl to perform at each node of the tree.
@@ -88,9 +92,9 @@ class Tree:
             func(root)
             return
        
-        self.postorder(root=root.right)
+        self.postorder(root=root.right,func=func)
         func(root)
-        self.postorder(root=root.left)
+        self.postorder(root=root.left,func=func)
         
         
 
@@ -104,10 +108,11 @@ if __name__ == "__main__":
 
 
     print "Transverse tree in order"
-    x.inorder()
+    x.inorder(func=inc)
 
     print "Transverse tree post-order"
-    x.postorder()
+    x.postorder(func=inc)
+
     print "\nsum of tree is %d: \n"% x.sum()
     
     for i in range(0,11):
