@@ -44,6 +44,8 @@ l.add(5)
 l.add(7)
 l.add(2)
 l.add(4)
+l.add(8)
+l.add(19)
 
 for i in xrange(20):
     l.add(i)
